@@ -1,11 +1,6 @@
 library(ggplot2)
-library(dplyr)
-
 read.csv("C:/Users/Annapurani/Desktop/Funding by destination.txt",header = TRUE, sep = "\t")->planets
-
 data.frame(planets)->planets
-planets
-
 ggplot(planets, aes(x="", y=Share.of.funding, fill=Celestial.body))+ 
   coord_polar("y", start=0)+
   geom_bar(stat="identity", width=1)+ theme_void()->planetspie 
