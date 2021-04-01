@@ -1,0 +1,19 @@
+library(ggplot2)
+library(dplyr)
+
+read.csv("C:/Users/Annapurani/Desktop/Funding by destination.txt",header = TRUE, sep = "\t")->planets
+
+data.frame(planets)->planets
+planets
+
+ggplot(planets, aes(x="", y=Share.of.funding, fill=Celestial.body))+ 
+  coord_polar("y", start=0)+
+  geom_bar(stat="identity", width=1)+ theme_void()->planetspie 
+planetspie + scale_fill_brewer(palette = "Pastel1")->planetspie
+planetspie + labs(x = NULL, y = NULL, fill = NULL, title = "Which celestial body has NASA funded the most missions for?",
+                  subtitle = "Share of funding by destination (1960-2020)",
+                  caption = "Data: The Planetary Society")->planetspie
+planetspie + geom_text(aes(label = paste0(round(Share.of.funding*100), "%")), position = position_stack(vjust = 0.5), color = "black", fontface = "bold", size=3)->planetspie
+planetspie + theme(plot.title = element_text(size = 12, face = "bold.italic"),
+                   plot.caption = element_text(hjust = 0))->planetspie
+planetspie
