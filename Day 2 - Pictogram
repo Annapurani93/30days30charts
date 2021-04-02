@@ -1,0 +1,23 @@
+install.packages("echarts4r")
+library(echarts4r)
+remotes::install_github('JohnCoene/echarts4r.assets')
+library(echarts4r.assets)
+df1 <- data.frame(
+  x = c("Mercury", "Venus", "Mars", "Outer Planets", "The Moon", "Small Bodies"),
+  y = c(2,8,14,8,6,10)
+)
+df1 %>% 
+  e_charts(x) %>% 
+  e_pictorial(y, symbol = ea_icons("location"), 
+              symbolRepeat = TRUE, z = -1,
+              symbolSize = c(20, 20)) %>% 
+  e_theme("dark") %>%
+  e_title(text="Number of major missions", subtext = "Sent by NASA from 1960-2020") %>% 
+  e_flip_coords() %>%
+  e_legend(show = FALSE) %>%
+  e_x_axis(splitLine=list(show = FALSE)) %>%
+  e_y_axis(splitLine=list(show = FALSE)) %>%
+  e_x_axis(show=FALSE)%>%
+  e_y_axis(show=TRUE)%>%
+  e_labels(fontSize = 14, fontWeight ='bold', position = "right", offset=c(10, 0))
+ 
