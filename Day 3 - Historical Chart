@@ -1,0 +1,9 @@
+library(ggplot2)
+read.delim("C:/Users/Annapurani/Desktop/Mars.csv",header = TRUE, sep = ",")->Mars
+data.frame(Mars)->Mars
+Mars <- slice(Mars, -c(1:51))
+str(Mars)
+Mars$Year<-as.character(Mars$Year)
+ggplot(Mars, aes(Year, Funding,group=1))+geom_point()+ geom_line( color="firebrick", size=1, alpha=0.9, linetype=1) + ggtitle("NASA's funding for MARS missions in the last decade")->g
+g+labs(x = NULL, y = "", caption="Data: The Planetary Society")->g
+g+  theme(panel.grid.minor = element_blank())+theme(panel.grid = element_blank())
