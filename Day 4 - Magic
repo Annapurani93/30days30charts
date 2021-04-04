@@ -1,0 +1,23 @@
+devtools::install_github("lchiffon/wordcloud2")
+library(wordcloud2)
+devtools::install_github("bradleyboehmke/harrypotter")
+library(harrypotter)
+c("Philosopher's Stone", "Chamber of Secrets", "Prisoner of Azkaban",
+            "Goblet of Fire", "Order of the Phoenix", "Half-Blood Prince",
+            "Deathly Hallows")->titles
+list(philosophers_stone, chamber_of_secrets, prisoner_of_azkaban,
+              goblet_of_fire, order_of_the_phoenix, half_blood_prince,
+              deathly_hallows)->books
+for(i in seq_along(titles)) 
+{temp <- tibble(chapter = seq_along(books[[i]]),
+                text = books[[i]]) %>%
+  unnest_tokens(word, text) %>%
+  mutate(book = titles[i]) %>%
+  select(book, everything())
+rbind(series, temp)->series
+}
+series%>% count(word, sort=TRUE)->sampleset
+sampleset
+sampleset%>% anti_join(stop_words)->sampleset
+wordcloud2(sampleset, figPath = "C:/Users/Annapurani/Desktop/HP.png", size = 1.5, color = "skyblue", backgroundColor="black")
+letterCloud(sampleset, word = "HP", color="white", backgroundColor="black")
