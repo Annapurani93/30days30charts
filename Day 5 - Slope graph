@@ -16,7 +16,6 @@ p<-p+geom_text(label=lab2015,y=re$X2015,x=rep.int(years,length(re$X2015)),hjust=
 p<-p+geom_text(label=lab1990,y=re$X1990,x=rep.int(0,length(re$X2015)),hjust=1, vjust=0.5,size=4)
 p<-p+geom_text(label="1990",x=0,y=(1.05*(20)),hjust=0.2,size=5)
 p<-p+geom_text(label="2015",x=years,y=(1.05*(max(re$X2015,re$X1990))),hjust=0.2,size=5)
-p<-p+xlab("")+ylab("")+ theme(axis.title.y = element_text(size = 15, angle = 90))
 p + labs(x = "", y = "", subtitle ="As a share of total electricity output", caption = "EAP = East Asia & Pacific, Data: World Bank")
 
 
